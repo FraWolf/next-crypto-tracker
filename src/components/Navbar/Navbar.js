@@ -6,7 +6,7 @@ export default function Navbar() {
     <Flex m={2}>
       <Box p="2">
         <Heading size="md" textTransform={"uppercase"}>
-          HelixSwap
+          Crypto Price Tracker
         </Heading>
       </Box>
       <Spacer />

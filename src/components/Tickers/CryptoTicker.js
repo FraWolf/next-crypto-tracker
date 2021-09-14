@@ -16,7 +16,7 @@ export default function CryptoTicker({ cryptoId }) {
 
   async function updatePrice() {
     const fetched = await getPrice(cryptoId);
-    const data = fetched[0] || {
+    const data = fetched || {
       name: "Not found",
       current_price: 0,
       price_change_percentage_24h: -1,

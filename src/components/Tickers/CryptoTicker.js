@@ -1,3 +1,4 @@
+import { Skeleton } from "@chakra-ui/react";
 import {
   Stat,
   StatArrow,
@@ -5,6 +6,7 @@ import {
   StatLabel,
   StatNumber,
 } from "@chakra-ui/stat";
+import { Flex } from "@chakra-ui/layout";
 import { useEffect, useState } from "react";
 import { getPrice } from "../../utils/apis";
 
@@ -13,6 +15,8 @@ export default function CryptoTicker({ cryptoId }) {
   const [price, setPrice] = useState(0);
   const [arrowType, setArrowType] = useState("increase");
   const [arrowValue, setArrowValue] = useState(0);
+
+  const isLoading = name === "loading" || name === "Not found";
 
   async function updatePrice() {
     const fetched = await getPrice(cryptoId);
@@ -39,7 +43,9 @@ export default function CryptoTicker({ cryptoId }) {
 
   return (
     <Stat>
-      <StatLabel>{name}</StatLabel>
+      <StatLabel>
+        <Skeleton isLoaded={!isLoading}>{name}</Skeleton>
+      </StatLabel>
       <StatNumber>{price}</StatNumber>
       <StatHelpText>
         <StatArrow type={arrowType} />
